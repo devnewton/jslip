@@ -4,6 +4,7 @@ import java.util.Scanner;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Entities;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.safety.Cleaner;
 import org.jsoup.safety.Whitelist;
@@ -37,8 +38,9 @@ public class Main {
         }
         Cleaner cleaner = new Cleaner(WHITELIST);
         doc = cleaner.clean(doc);
-        doc.outputSettings().indentAmount(0).prettyPrint(false);
+        doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml).escapeMode(Entities.EscapeMode.xhtml).indentAmount(0).prettyPrint(false);
         message = doc.body().html();
+        message = message.replaceAll("\\p{Cntrl}", " ");
         return message;
     }
 }
