@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        for (;;) {
+        while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String cleaned = cleanMessage(line);
             System.out.println(cleaned);
